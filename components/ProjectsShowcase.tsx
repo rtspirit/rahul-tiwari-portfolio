@@ -1,5 +1,8 @@
+"use client";
+
 import { ProjectDetail } from "@/lib/projects";
 import { FaArrowRight } from "react-icons/fa";
+import { track } from "@vercel/analytics/react";
 
 type ProjectsShowcaseProps = {
   projects: ProjectDetail[];
@@ -54,6 +57,7 @@ export default function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
                 {/* Using a relative div for the link area since these internal pages /projects/[slug] might not actually exist yet in the starter code, but keeping the visual */}
                 <a 
                   href={`/projects/${project.slug}`}
+                  onClick={() => track("Viewed Project Details", { project: project.title })}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors mt-auto w-max"
                 >
                   View details <FaArrowRight className="text-teal-400 group-hover:translate-x-1 transition-transform" />
