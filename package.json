@@ -1,6 +1,6 @@
 {
   "name": "rahul-tiwari-portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,6 +20,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "baseline-browser-mapping": "^2.10.18",
     "eslint": "^9",
     "eslint-config-next": "16.0.6",
     "tailwindcss": "^4",
