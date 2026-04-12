@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
-import { track } from "@vercel/analytics/react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function HeroSection() {
   return (
@@ -45,7 +45,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap items-center justify-center gap-4 opacity-0 animate-fade-up animate-delay-300">
           <a
             href="#contact"
-            onClick={() => track("Contact Clicked")}
+            onClick={() => sendGAEvent('event', 'contact_click')}
             className="group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-white transition-all overflow-hidden bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(45,212,191,0.2)]"
           >
             <FaPhoneAlt className="text-teal-400 group-hover:animate-bounce" />
@@ -55,7 +55,7 @@ export default function HeroSection() {
           <a
             href="/resume/Rahul-Tiwari-Resume.pdf"
             download
-            onClick={() => track("Resume Downloaded")}
+            onClick={() => sendGAEvent('event', 'resume_download')}
             className="group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-[#030712] transition-all bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-300 hover:to-blue-400 hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.4)]"
           >
             <IoMdDownload className="text-lg group-hover:-translate-y-1 transition-transform" />
