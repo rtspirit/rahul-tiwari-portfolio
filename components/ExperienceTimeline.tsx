@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ExperienceDetail } from "@/lib/projects";
+import { motion } from "framer-motion";
 
 type ExperienceTimelineProps = {
   experiences: ExperienceDetail[];
@@ -19,13 +20,18 @@ export default function ExperienceTimeline({ experiences }: ExperienceTimelinePr
     <section className="py-24 relative" id="experience">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 relative z-10">
         
-        <div className="flex flex-col items-center mb-16 opacity-0 animate-fade-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center mb-16"
+        >
           <div className="w-[2px] h-16 bg-gradient-to-b from-transparent via-teal-500/80 to-teal-300 animate-pulse shadow-[0_0_15px_rgba(45,212,191,0.8)] rounded-full mb-8" />
           <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-blue-500">
             Professional Experience
           </h2>
           <div className="h-1 w-20 bg-teal-500 mt-4 rounded-full opacity-50" />
-        </div>
+        </motion.div>
 
         <div className="relative border-l border-white/10 ml-4 md:ml-0 md:border-l-0">
           {/* Vertical line for desktop */}
@@ -39,7 +45,14 @@ export default function ExperienceTimeline({ experiences }: ExperienceTimelinePr
               const hiddenTechCount = exp.tech.length - 4;
 
               return (
-                <div key={exp.company} className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 opacity-0 animate-fade-up`} style={{ animationDelay: `${(index + 1) * 150}ms` }}>
+                <motion.div 
+                  key={exp.company}
+                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
+                  className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16`}
+                >
                   
                   {/* Timeline Dot */}
                   <div className="absolute left-[calc(0px-0.5rem)] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 border-[3px] border-[#030712] shadow-[0_0_15px_rgba(45,212,191,0.6)] z-10" />
@@ -85,7 +98,7 @@ export default function ExperienceTimeline({ experiences }: ExperienceTimelinePr
                   </div>
                   
                   <div className={`hidden md:block w-1/2 ${isEven ? 'order-last' : 'order-first'}`} />
-                </div>
+                </motion.div>
               );
             })}
           </div>

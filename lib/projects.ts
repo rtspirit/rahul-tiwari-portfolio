@@ -23,22 +23,22 @@ export type ExperienceDetail = {
 export const experiences: ExperienceDetail[] = [
   {
     company: "Chewy",
-    role: "Full-Stack Software Engineer II",
+    role: "Software Engineer II",
     timeframe: "Feb 2023 – Present",
     summary: "Engineered robust prescription management workflows, handled controlled substance compliance, and built an internal AI knowledge assistant platform. Led full-stack initiatives with significant cost-saving and efficiency impacts.",
     tech: ["React", "TypeScript", "Next.js", "Java", "Spring Boot", "GraphQL", "AWS Lambda", "AWS Step Functions", "Kafka", "Anthropic Claude", "OpenAI APIs"]
   },
   {
-    company: "Dispatch",
+    company: "Dispatch Technologies",
     role: "Software Engineer",
-    timeframe: "Jan 2022 - Sept 2022",
+    timeframe: "Jan 2022 – Sept 2022",
     summary: "Developed scalable backend services and responsive frontend architectures, collaborating across teams to deliver high-performance software solutions.",
     tech: ["React", "JavaScript", "TypeScript", "Node.js", "Express", "PostgreSQL", "AWS EC2", "Docker"]
   },
   {
     company: "Infosys",
     role: "Senior Software Engineer",
-    timeframe: "Dec 2016 - Nov 2020",
+    timeframe: "Dec 2016 – Nov 2020",
     summary: "Built and maintained enterprise-scale monolithic to microservice migrations, optimizing workflows and improving system reliability.",
     tech: ["Java", "Spring Boot", "Hibernate", "REST APIs", "Oracle DB", "JUnit", "Jenkins"]
   }
@@ -49,7 +49,7 @@ export const projects: ProjectDetail[] = [
   {
     slug: "chewy-prescription-management-platform",
     title: "Chewy Prescription Management Platform",
-    role: "Full-Stack Software Engineer II",
+    role: "Software Engineer II",
     company: "Chewy",
     timeframe: "Feb 2023 – Present",
     summary:
@@ -82,7 +82,7 @@ export const projects: ProjectDetail[] = [
   {
     slug: "chewy-controlled-substances-compliance",
     title: "Controlled Substances Compliance & PDMP Integration",
-    role: "Backend Software Engineer II",
+    role: "Software Engineer II",
     company: "Chewy",
     timeframe: "Feb 2023 – Present",
     summary:
@@ -111,7 +111,7 @@ export const projects: ProjectDetail[] = [
   {
     slug: "internal-ai-knowledge-assistant",
     title: "Internal AI Knowledge Assistant (Org-wide Chatbot Platform)",
-    role: "Platform Engineer",
+    role: "Software Engineer II",
     company: "Chewy",
     timeframe: "2023 – Present",
     summary:
@@ -155,8 +155,8 @@ export const projects: ProjectDetail[] = [
     slug: "accuweather-app-dispatch",
     title: "AccuWeather Delivery Integrations",
     role: "Software Engineer",
-    company: "Dispatch",
-    timeframe: "Jan 2022 - Sept 2022",
+    company: "Dispatch Technologies",
+    timeframe: "Jan 2022 – Sept 2022",
     summary: "Integrated AccuWeather APIs to provide weather-aware dynamic routing heuristics for fleet operators.",
     problem: "Real-time routing logic lacked severe weather awareness, leading to unexpected service delays and logistical bottlenecks.",
     solution: "Engineered scalable backend pipelines connected to AccuWeather data streams and built responsive front-end dashboard panels to visualize weather impacts.",
@@ -165,13 +165,13 @@ export const projects: ProjectDetail[] = [
     responsibilities: [
       "Engineered backend integration pipelines for high-velocity third-party weather APIs.",
       "Designed operator-facing dashboard panels using React.",
-      "Optimized postgres query performance to handle large datasets."
+      "Optimized PostgreSQL query performance to handle large datasets."
     ],
   },
   {
     slug: "ci-cd-pipelines-chewy",
     title: "CI/CD Pipelines & Infrastructure Automation",
-    role: "Full-Stack Software Engineer II",
+    role: "Software Engineer II",
     company: "Chewy",
     timeframe: "Feb 2023 – Present",
     summary: "Standardized automated CI/CD pipelines across multiple microservice repositories to streamline testing and AWS deployment.",
