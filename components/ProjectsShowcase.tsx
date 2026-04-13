@@ -3,6 +3,8 @@
 import { ProjectDetail } from "@/lib/projects";
 import { FaArrowRight } from "react-icons/fa";
 import { sendGAEvent } from "@next/third-parties/google";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { MouseEvent } from "react";
 
 type ProjectsShowcaseProps = {
   projects: ProjectDetail[];
@@ -13,19 +15,28 @@ export default function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
     <section className="py-24 relative" id="projects">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         
-        <div className="flex flex-col items-center mb-16 opacity-0 animate-fade-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center mb-16"
+        >
           <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-slate-200">
             Selected Work
           </h2>
           <div className="h-1 w-20 bg-slate-500 mt-4 rounded-full opacity-50" />
-        </div>
+        </motion.div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.slug} 
-              className="glass-card flex flex-col rounded-3xl overflow-hidden group opacity-0 animate-fade-up"
-              style={{ animationDelay: `${(index + 1) * 100}ms` }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.1 }}
+              className="glass-card flex flex-col rounded-3xl overflow-hidden group border border-white/10 hover:border-teal-500/30 transition-colors"
             >
               {/* Optional: Project image placeholder via elegant gradient */}
               <div className="h-48 w-full bg-gradient-to-br from-slate-800 to-[#0f172a] relative overflow-hidden">
@@ -63,7 +74,7 @@ export default function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
                   View details <FaArrowRight className="text-teal-400 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
