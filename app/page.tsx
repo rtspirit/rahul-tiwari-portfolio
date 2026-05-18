@@ -2,6 +2,8 @@ import HeroSection from "@/components/HeroSection";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsBentoBox from "@/components/SkillsBentoBox";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
+import FeaturedProject from "@/components/FeaturedProject";
+import ContactForm from "@/components/ContactForm";
 import { projects, experiences } from "@/lib/projects";
 import { FaPhoneAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
@@ -50,6 +52,9 @@ export default function Home() {
         {/* Divider Glow */}
         <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-blue-900 to-transparent my-10" />
 
+        {/* Featured Project */}
+        <FeaturedProject />
+
         {/* Projects Section */}
         <ProjectsShowcase projects={projects} />
       </main>
@@ -68,12 +73,7 @@ export default function Home() {
             Always open to discussing new opportunities, fascinating technical challenges, or just chatting about engineering at scale.
           </p>
           
-          <a
-            href="mailto:tiwari.ra2022@gmail.com"
-            className="group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-[#030712] transition-all bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-300 hover:to-blue-400 hover:scale-105 shadow-[0_0_30px_rgba(45,212,191,0.3)] mb-16"
-          >
-            Say Hello 👋
-          </a>
+          <ContactForm />
           
           <div className="flex flex-col items-center gap-6 mt-12 w-full pt-8 border-t border-white/10">
             <div className="flex gap-6">
