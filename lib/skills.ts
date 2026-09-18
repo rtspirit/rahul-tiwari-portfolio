@@ -1,0 +1,98 @@
+export type SkillGroup = { name: string; items: string[] };
+
+export const skillGroups: SkillGroup[] = [
+  {
+    name: "Languages",
+    items: ["Java", "Python", "TypeScript", "JavaScript", "Go", "SQL"],
+  },
+  {
+    name: "Frontend",
+    items: [
+      "React",
+      "Next.js",
+      "Redux",
+      "TanStack Query",
+      "MUI",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+    ],
+  },
+  {
+    name: "Backend",
+    items: [
+      "Spring Boot",
+      "FastAPI",
+      "NestJS",
+      "Node.js",
+      "Express",
+      "GraphQL",
+      "REST APIs",
+      "Prisma",
+      "SQLAlchemy",
+      "Celery",
+      "Kafka",
+    ],
+  },
+  {
+    name: "Data",
+    items: [
+      "PostgreSQL",
+      "PostGIS",
+      "MySQL",
+      "MongoDB",
+      "DynamoDB",
+      "Supabase",
+      "Oracle DB",
+    ],
+  },
+  {
+    name: "AWS",
+    items: [
+      "Lambda",
+      "Step Functions",
+      "ECS",
+      "EKS",
+      "EC2",
+      "S3",
+      "RDS",
+      "SQS",
+      "SNS",
+      "SES",
+      "CloudFront",
+      "Route 53",
+      "VPC",
+      "IAM",
+      "CloudWatch",
+      "CodeDeploy",
+    ],
+  },
+  {
+    name: "DevOps",
+    items: [
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Jenkins",
+      "GitHub Actions",
+      "Travis CI",
+      "Rancher",
+      "Vercel",
+      "Railway",
+    ],
+  },
+  {
+    name: "AI",
+    items: [
+      "Anthropic Claude",
+      "OpenAI",
+      "Google Gemini",
+      "Meta LLaMA",
+      "MCP servers",
+    ],
+  },
+  {
+    name: "Observability",
+    items: ["Datadog", "Splunk", "Loggly"],
+  },
+];

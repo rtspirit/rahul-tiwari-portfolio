@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rahultiwari portfolio
 
-## Getting Started
+Personal portfolio for Rahul Tiwari, published as a changelog: every role is a dated release, every entry a shipped outcome with its measured delta.
 
-First, run the development server:
+Built with Next.js (App Router), React, Tailwind CSS 4 and framer-motion. Deployed on Vercel from `main`.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Update content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All copy lives in `lib/` so a resume update is a data edit:
 
-## Learn More
+| File | What it holds |
+| --- | --- |
+| `lib/releases.ts` | Roles as releases. Each entry has a kind (`added`, `improved`, `fixed`), text, optional metrics and an optional case-study link. The first release renders as the latest, flooded green. |
+| `lib/projects.ts` | Case studies served at `/projects/[slug]`. Keep slugs stable; they are linked from the releases and indexed. |
+| `lib/skills.ts` | The Dependencies section. |
+| `lib/education.ts` | The Education section, tagged by completion month. |
+| `lib/site.ts` | Name, title, intro line, resume path and external links. |
 
-To learn more about Next.js, take a look at the following resources:
+Replace `public/resume/Rahul-Tiwari-Resume.pdf` when the resume changes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Metric values animate on scroll. Digits count in; any prefix or suffix (`$`, `~`, `%`, `K`, `+`) stays fixed, so write them exactly as they should read.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment
 
-## Deploy on Vercel
+- `NEXT_PUBLIC_GA_ID` enables Google Analytics. Without it nothing is loaded.
+- The contact form posts to Web3Forms; the public access key is in `components/ContactForm.tsx`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design record
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`PRODUCT.md` holds product truth. `DESIGN.md` documents the visual system. Both are maintained with the Impeccable skill.
+
+## Checks
+
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```

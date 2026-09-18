@@ -2,81 +2,117 @@ export type ProjectDetail = {
   slug: string;
   title: string;
   role: string;
-  company?: string;
-  timeframe?: string;
+  company: string;
+  timeframe: string;
   summary: string;
   problem: string;
   solution: string;
   impact: string;
+  /** Traced deltas shown beside the impact sentence, same treatment as the home page. */
+  metrics?: { value: string; label: string }[];
   tech: string[];
   responsibilities: string[];
 };
 
-export type ExperienceDetail = {
-  company: string;
-  role: string;
-  timeframe: string;
-  summary: string;
-  tech: string[];
-};
-
-export const experiences: ExperienceDetail[] = [
-  {
-    company: "Chewy",
-    role: "Software Engineer II",
-    timeframe: "Feb 2023 – Present",
-    summary: "Engineered robust prescription management workflows, handled controlled substance compliance, and built an internal AI knowledge assistant platform. Led full-stack initiatives with significant cost-saving and efficiency impacts.",
-    tech: ["React", "TypeScript", "Next.js", "Java", "Spring Boot", "GraphQL", "AWS Lambda", "AWS Step Functions", "Kafka", "Anthropic Claude", "OpenAI APIs"]
-  },
-  {
-    company: "Dispatch Technologies",
-    role: "Software Engineer",
-    timeframe: "Jan 2022 – Sept 2022",
-    summary: "Developed scalable backend services and responsive frontend architectures, collaborating across teams to deliver high-performance software solutions.",
-    tech: ["React", "JavaScript", "TypeScript", "Node.js", "Express", "PostgreSQL", "AWS EC2", "Docker"]
-  },
-  {
-    company: "Infosys",
-    role: "Senior Software Engineer",
-    timeframe: "Dec 2016 – Nov 2020",
-    summary: "Built and maintained enterprise-scale monolithic to microservice migrations, optimizing workflows and improving system reliability.",
-    tech: ["Java", "Spring Boot", "Hibernate", "REST APIs", "Oracle DB", "JUnit", "Jenkins"]
-  }
-];
-
-
 export const projects: ProjectDetail[] = [
   {
+    slug: "tradeengage-integrations-registry",
+    title: "CRM & Field-Service Integrations Registry",
+    role: "Senior Software Engineer",
+    company: "TradeEngage",
+    timeframe: "Jun 2026 – Present",
+    summary:
+      "Four CRM and field-service integrations (Housecall Pro, Jobber, ServiceMinder, Broccoli) shipped on one config-driven registry with five shared capability contracts.",
+    problem:
+      "Each new CRM integration was a bespoke build with its own auth, sync and activation path, so every partner added cost and every fix had to be made several times.",
+    solution:
+      "A config-driven integration registry where each provider declares which of five shared capability contracts it fulfils. OAuth2 with PKCE and GraphQL sit behind the same contracts as REST providers, and customers activate an integration themselves without an engineer in the loop.",
+    impact:
+      "Every provider lives on one code path, customers activate integrations themselves, and a fix or extension lands for all of them at once.",
+    metrics: [
+      { value: "4", label: "integrations shipped" },
+      { value: "5", label: "shared capability contracts" },
+    ],
+    tech: ["Python", "FastAPI", "SQLAlchemy", "Celery", "PostgreSQL", "OAuth2 / PKCE", "GraphQL"],
+    responsibilities: [
+      "Designed the registry and the five capability contracts shared by every provider.",
+      "Implemented OAuth2/PKCE and GraphQL providers alongside REST providers behind the same contracts.",
+      "Built customer self-serve activation so a company connects its CRM without support.",
+      "Fixed duplicate active integrations per company found in production.",
+    ],
+  },
+  {
+    slug: "tradeengage-voice-agent-dispatch",
+    title: "AI Voice Agent in Referral Dispatch",
+    role: "Senior Software Engineer",
+    company: "TradeEngage",
+    timeframe: "Jun 2026 – Present",
+    summary:
+      "An AI voice agent (Broccoli, Avoca) integrated into referral dispatch so an accepted job triggers an immediate call and text to the homeowner.",
+    problem:
+      "When a contractor accepted a referred job, the homeowner waited for a manual callback, and the delay cost conversions.",
+    solution:
+      "A delivery adapter for the voice providers, a multi-provider outbound fan-out that places the call and sends the text the moment a job is accepted, and self-serve activation for the companies that opt in. Two layers of idempotency guarantee a retry never double-dials a homeowner.",
+    impact:
+      "Homeowners hear from the contractor immediately instead of waiting for a callback, and retries are safe by construction.",
+    tech: ["Python", "FastAPI", "Celery", "PostgreSQL", "Broccoli", "Avoca"],
+    responsibilities: [
+      "Built the voice-provider delivery adapter and the multi-provider outbound fan-out.",
+      "Designed two-layer idempotency across the dispatch and delivery boundaries.",
+      "Shipped self-serve activation so a company enables the agent from its own settings.",
+    ],
+  },
+  {
+    slug: "tradeengage-referral-analytics",
+    title: "Referral Link Analytics",
+    role: "Senior Software Engineer",
+    company: "TradeEngage",
+    timeframe: "Jun 2026 – Present",
+    summary:
+      "Referral link analytics built from scratch: one backend module feeding both a customer dashboard and an internal admin surface.",
+    problem:
+      "Companies sharing referral links had no view of which clicks converted, which channels worked, or where revenue leaked, and internal teams had no admin view either.",
+    solution:
+      "A single analytics module with per-click conversion attribution, channel click-through rates, revenue-leak aging and email/SMS delivery health, rendered in a customer-facing dashboard and an internal admin surface from the same data.",
+    impact:
+      "Customers see where their referrals come from and convert; the internal team sees delivery health and leaks across every company from one place.",
+    metrics: [
+      { value: "~$3.9k", label: "double-pay closed" },
+      { value: "132", label: "affected users found" },
+    ],
+    tech: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "TanStack Query", "MUI"],
+    responsibilities: [
+      "Modelled per-click attribution and revenue-leak aging in the backend module.",
+      "Built the customer dashboard and the admin surface in React with TanStack Query and MUI.",
+      "Closed a bonus rule that double-paid 132 users (~$3.9k), surfaced while auditing the data.",
+    ],
+  },
+  {
     slug: "chewy-prescription-management-platform",
-    title: "Chewy Prescription Management Platform",
+    title: "Prescription Approval & Autoship Workflows",
     role: "Software Engineer II",
     company: "Chewy",
-    timeframe: "Feb 2023 – Present",
+    timeframe: "Feb 2023 – Sep 2025",
     summary:
-      "End-to-end prescription management workflows for Chewy Pharmacy, covering prescription approvals, drug utilization review, and clinic changes for autoship orders.",
+      "End-to-end prescription workflows for Chewy Pharmacy: approvals, drug utilization review, and clinic changes for autoship orders.",
     problem:
-      "Technicians and pharmacists needed a more efficient and accurate way to review prescriptions and perform drug utilization review while minimizing cancellations on autoship orders.",
+      "Technicians and pharmacists needed a faster, more accurate way to enter data and perform drug utilization review, while autoship orders were being cancelled whenever a clinic changed.",
     solution:
-      "Designed and implemented a new prescription approval UI using React, TypeScript, and Next.js, and enhanced Java/Spring Boot services to support clinic changes per order item and real-time state transitions through asynchronous workflows.",
+      "A new prescription approval UI in React, TypeScript, Next.js and GraphQL, plus Java 21 / Spring Boot services that support a clinic change per order item and drive real-time state transitions through asynchronous workflows.",
     impact:
-      "Reduced technician friction, improved data entry and DUR experience, prevented ~23% cancellations on eligible autoship orders, and contributed to multi-million dollar cost savings and revenue growth.",
-    tech: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "Java",
-      "Spring Boot",
-      "GraphQL",
-      "AWS Step Functions",
-      "AWS Lambda",
-      "Kafka",
+      "Technicians and pharmacists approve prescriptions faster with fewer entry errors, and autoship orders survive a clinic change instead of being cancelled.",
+    metrics: [
+      { value: "$5M", label: "saved per year" },
+      { value: "23%", label: "fewer cancellations" },
+      { value: "$3.6M", label: "revenue growth" },
     ],
+    tech: ["React", "TypeScript", "Next.js", "GraphQL", "Java 21", "Spring Boot", "AWS Step Functions", "AWS Lambda", "Kafka"],
     responsibilities: [
-      "Designed data entry and drug utilization review UI flows for technicians and pharmacists.",
-      "Collaborated with product and pharmacy stakeholders to refine workflow requirements and edge cases.",
-      "Enhanced autoship workflows to support per-item clinic changes without disrupting existing orders.",
-      "Implemented scalable prescription workflows using event-driven patterns and AWS Step Functions/Lambda.",
-      "Improved error visibility and resiliency with better logging, metrics, and monitoring.",
+      "Designed data entry and drug utilization review flows for technicians and pharmacists.",
+      "Refined workflow requirements and edge cases with product and pharmacy stakeholders.",
+      "Extended autoship workflows to support per-item clinic changes without disrupting existing orders.",
+      "Implemented event-driven prescription workflows on Step Functions, Lambda and Kafka.",
+      "Improved error visibility with logging, metrics and monitoring.",
     ],
   },
   {
@@ -84,50 +120,43 @@ export const projects: ProjectDetail[] = [
     title: "Controlled Substances Compliance & PDMP Integration",
     role: "Software Engineer II",
     company: "Chewy",
-    timeframe: "Feb 2023 – Present",
+    timeframe: "Feb 2023 – Sep 2025",
     summary:
-      "Controlled substances initiative for Chewy’s Pharmacy, including PDMP integration and regulatory workflows across multiple states.",
+      "The controlled substances initiative for Chewy Pharmacy, including PDMP integration and regulatory workflows across states.",
     problem:
-      "Handling controlled substances required strict compliance with state-level PDMP checks and regulatory requirements, but existing systems were not designed for these workflows.",
+      "Controlled substances required state-level PDMP checks and regulatory workflows the existing systems were never designed for.",
     solution:
-      "Led the design process for a controlled substances architecture and integrated with state PDMP systems via Bamboo Health APIs, orchestrating checks through backend services and workflows.",
+      "Led the design of a controlled substances architecture and integrated with each state's PDMP through Bamboo Health APIs, orchestrating checks in backend services and workflows.",
     impact:
-      "Enabled Chewy Pharmacy to safely and compliantly process controlled substance prescriptions at scale while reducing manual pharmacist workload and compliance risk.",
-    tech: [
-      "Java",
-      "Spring Boot",
-      "REST APIs",
-      "AWS",
-      "Bamboo Health APIs",
-      "Kafka",
-    ],
+      "Chewy Pharmacy processes controlled substance prescriptions compliantly at scale with less manual pharmacist work and lower compliance risk.",
+    tech: ["Java", "Spring Boot", "REST APIs", "AWS", "Bamboo Health APIs", "Kafka"],
     responsibilities: [
-      "Collaborated with legal, compliance, and pharmacy teams to map state-by-state PDMP requirements.",
-      "Designed service interactions and data models to persist PDMP check results and audit trails.",
-      "Integrated with Bamboo Health APIs and handled retries, timeouts, and error handling.",
-      "Coordinated rollout strategy, feature flags, and observability for the new workflows.",
+      "Mapped state-by-state PDMP requirements with legal, compliance and pharmacy teams.",
+      "Designed service interactions and data models for PDMP results and audit trails.",
+      "Integrated Bamboo Health APIs with retries, timeouts and error handling.",
+      "Coordinated rollout, feature flags and observability for the new workflows.",
     ],
   },
   {
     slug: "internal-ai-knowledge-assistant",
-    title: "Internal AI Knowledge Assistant (Org-wide Chatbot Platform)",
+    title: "Org-wide AI Knowledge Assistant",
     role: "Software Engineer II",
     company: "Chewy",
-    timeframe: "2023 – Present",
+    timeframe: "Feb 2023 – Sep 2025",
     summary:
-      "Organization-wide chatbot platform leveraging MCP server architecture and multiple LLMs to help engineers and teams access internal knowledge and tooling.",
+      "An organization-wide chatbot platform on MCP server architecture, integrating Anthropic Claude and OpenAI models with internal systems.",
     problem:
-      "Engineers and teams needed faster access to internal documentation, workflows, and systems without manually digging through multiple tools and repos.",
+      "Engineers and teams needed faster access to internal documentation, workflows and systems without digging through multiple tools and repositories.",
     solution:
-      "Engineered an internal chatbot platform using MCP server architecture and integrated Anthropic Claude, OpenAI models, and internal systems to provide contextual answers and actions.",
+      "A chatbot platform built on MCP server architecture that connects Anthropic Claude and OpenAI models to internal APIs and knowledge sources for contextual answers and actions.",
     impact:
-      "Improved cross-team productivity and knowledge sharing by centralizing access to documentation and workflows via conversational interfaces.",
-    tech: ["TypeScript", "Node.js", "MCP", "Anthropic Claude", "OpenAI APIs"],
+      "Documentation and workflows reachable through one conversational interface, improving cross-team productivity and knowledge sharing.",
+    tech: ["TypeScript", "Node.js", "MCP", "Anthropic Claude", "OpenAI"],
     responsibilities: [
-      "Designed the architecture of the chatbot platform and MCP-based integrations.",
-      "Integrated multiple LLM providers and internal APIs while handling auth and rate limiting.",
-      "Worked with multiple teams to onboard domain-specific tools and knowledge sources.",
-      "Defined prompts, safety constraints, and evaluation strategies for internal use cases.",
+      "Designed the platform architecture and MCP-based integrations.",
+      "Integrated multiple LLM providers and internal APIs with auth and rate limiting.",
+      "Onboarded domain teams' tools and knowledge sources.",
+      "Defined prompts, safety constraints and evaluation strategies.",
     ],
   },
   {
@@ -135,37 +164,24 @@ export const projects: ProjectDetail[] = [
     title: "Fax OCR & Textract Prescription Workflow",
     role: "Software Engineer II",
     company: "Chewy",
-    timeframe: "2023",
+    timeframe: "Feb 2023 – Sep 2025",
     summary:
-      "Modernized the fax-based prescription approval process using AWS Textract OCR and redesigned workflows.",
+      "The fax-based prescription approval process modernized with redesigned templates and AWS Textract OCR.",
     problem:
-      "Fax prescription forms were difficult to read and process, resulting in poor readability and manual effort for pharmacy staff.",
+      "Fax prescription forms were hard to read and process, leaving pharmacy staff with manual effort and rework.",
     solution:
-      "Redesigned fax templates and integrated AWS Textract OCR into the workflow to extract structured data and streamline approval steps.",
+      "Redesigned fax templates, refactored the approval workflow and integrated AWS Textract OCR to extract structured data.",
     impact:
-      "Improved fax form readability from ~20% to ~99% and unlocked significant cost savings by reducing manual effort and rework.",
+      "Fax forms became machine-readable, so pharmacy staff stopped re-keying and reworking prescriptions.",
+    metrics: [
+      { value: "99%", label: "form readability, up from 20%" },
+      { value: "$1.5M", label: "saved across the org" },
+    ],
     tech: ["AWS Textract", "Java", "Spring Boot", "AWS", "React"],
     responsibilities: [
-      "Refactored existing fax approval workflows and redesigned templates for readability.",
-      "Integrated AWS Textract OCR and mapped extracted data into internal prescription models.",
-      "Collaborated with downstream teams to ensure end-to-end validation and error handling.",
-    ],
-  },
-  {
-    slug: "accuweather-app-dispatch",
-    title: "AccuWeather Delivery Integrations",
-    role: "Software Engineer",
-    company: "Dispatch Technologies",
-    timeframe: "Jan 2022 – Sept 2022",
-    summary: "Integrated AccuWeather APIs to provide weather-aware dynamic routing heuristics for fleet operators.",
-    problem: "Real-time routing logic lacked severe weather awareness, leading to unexpected service delays and logistical bottlenecks.",
-    solution: "Engineered scalable backend pipelines connected to AccuWeather data streams and built responsive front-end dashboard panels to visualize weather impacts.",
-    impact: "Significantly improved logistical safety margins and reduced delayed deliveries by preemptively altering routes.",
-    tech: ["React", "Node.js", "Express", "PostgreSQL", "AWS"],
-    responsibilities: [
-      "Engineered backend integration pipelines for high-velocity third-party weather APIs.",
-      "Designed operator-facing dashboard panels using React.",
-      "Optimized PostgreSQL query performance to handle large datasets."
+      "Refactored the fax approval workflow and redesigned templates for readability.",
+      "Integrated Textract OCR and mapped extracted data into prescription models.",
+      "Validated the end-to-end flow and error handling with downstream teams.",
     ],
   },
   {
@@ -173,16 +189,45 @@ export const projects: ProjectDetail[] = [
     title: "CI/CD Pipelines & Infrastructure Automation",
     role: "Software Engineer II",
     company: "Chewy",
-    timeframe: "Feb 2023 – Present",
-    summary: "Standardized automated CI/CD pipelines across multiple microservice repositories to streamline testing and AWS deployment.",
-    problem: "Fragmented deployment pipelines and manual release steps resulted in slower cycle times and occasional human error.",
-    solution: "Designed unified release pipelines leveraging GitHub Actions, CI tooling, and Terraform to completely automate the path to production.",
-    impact: "Drastically reduced median deployment times and eliminated manual deployment configuration errors.",
-    tech: ["GitHub Actions", "Jenkins", "Docker", "AWS", "Terraform"],
+    timeframe: "Feb 2023 – Sep 2025",
+    summary:
+      "CI/CD for the Pharmacist Admin UI, Vet Diet Admin UI and Workflow Service with Terraform, Jenkins and EKS.",
+    problem:
+      "Fragmented pipelines and manual release steps slowed cycle times and left room for human error.",
+    solution:
+      "Unified release pipelines on Jenkins with Terraform-provisioned infrastructure and EKS deployments, wired to Splunk and Datadog for error tracking.",
+    impact:
+      "One-click production deployments and better error tracking across three services.",
+    tech: ["Terraform", "Jenkins", "EKS", "Docker", "AWS", "Splunk", "Datadog"],
     responsibilities: [
-      "Automated infrastructure provisioning using Terraform.",
-      "Standardized CI/CD templates across backend Java services and frontend systems.",
-      "Integrated automated security and artifact scanning directly into the build process."
+      "Automated infrastructure provisioning with Terraform.",
+      "Standardized pipeline templates across Java services and frontends.",
+      "Integrated error tracking through Splunk and Datadog.",
     ],
-  }
+  },
+  {
+    slug: "accuweather-app-dispatch",
+    title: "AccuWeather Field Weather Tracking",
+    role: "Software Engineer Co-op",
+    company: "Dispatch Technologies",
+    timeframe: "Jan 2022 – Sep 2022",
+    summary:
+      "A standalone weather tracking feature for on-field agents in the desktop and mobile applications.",
+    problem:
+      "Field agents had no weather awareness inside the tools they already used, so severe weather caused unplanned delays.",
+    solution:
+      "A weather tracking feature built on AccuWeather APIs in React, JavaScript and TypeScript, shipped to both desktop and mobile apps.",
+    impact:
+      "Field agents plan around the weather inside the tools they already use, and the feature lifted what each client paid for the product.",
+    metrics: [{ value: "+7%", label: "product revenue per client" }],
+    tech: ["React", "TypeScript", "JavaScript", "AccuWeather APIs", "Node.js"],
+    responsibilities: [
+      "Integrated AccuWeather APIs and built the agent-facing UI.",
+      "Shipped the feature across desktop and mobile applications.",
+    ],
+  },
 ];
+
+export function projectBySlug(slug: string) {
+  return projects.find((p) => p.slug === slug);
+}

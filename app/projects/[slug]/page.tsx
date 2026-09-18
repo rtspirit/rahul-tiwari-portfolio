@@ -1,88 +1,140 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects } from "@/lib/projects";
-import { FaArrowLeft } from "react-icons/fa";
+import Actions from "@/components/Actions";
+import Arrow from "@/components/Arrow";
+import Metric from "@/components/Metric";
+import { projects, projectBySlug } from "@/lib/projects";
+import { anchorFor, releaseForCompany } from "@/lib/releases";
+import { site } from "@/lib/site";
 
-export default async function ProjectPage(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
-  const project = projects.find((p) => p.slug === params.slug);
-
-  if (!project) {
-    notFound();
-  }
-
-  return (
-    <div className="min-h-screen pt-32 pb-24 px-4 sm:px-6 z-10 relative">
-      <div className="max-w-4xl mx-auto">
-        <a href="/" className="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 font-semibold mb-10 transition-colors">
-          <FaArrowLeft /> Back to Portfolio
-        </a>
-        
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-200 to-slate-200 mb-4">
-          {project.title}
-        </h1>
-        <p className="text-xl text-blue-400 font-semibold mb-2">
-          {project.company === "Chewy" ? "Software Engineer II" : project.role}
-        </p>
-        <p className="text-sm text-slate-400 mb-12">{project.company} | {project.timeframe}</p>
-
-        <section className="glass-card p-8 rounded-3xl mb-10 border border-white/5 shadow-2xl">
-          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-teal-500 glow-text-teal" /> Overview
-          </h2>
-          <p className="text-slate-300 leading-relaxed">{project.summary}</p>
-        </section>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-10">
-          <section className="glass-card p-8 rounded-3xl border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 blur-[50px] rounded-full group-hover:bg-red-500/20 transition-colors" />
-            <h2 className="text-xl font-bold text-slate-100 mb-4 relative z-10">The Problem</h2>
-            <p className="text-slate-400 leading-relaxed relative z-10">{project.problem}</p>
-          </section>
-
-          <section className="glass-card p-8 rounded-3xl border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 blur-[50px] rounded-full group-hover:bg-teal-500/20 transition-colors" />
-            <h2 className="text-xl font-bold text-slate-100 mb-4 relative z-10">The Solution</h2>
-            <p className="text-slate-400 leading-relaxed relative z-10">{project.solution}</p>
-          </section>
-        </div>
-
-        <section className="glass-card p-8 rounded-3xl mb-10 border border-teal-500/20 bg-teal-900/10 hover-glow">
-          <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-500 glow-text-blue" /> Impact
-          </h2>
-          <p className="text-teal-50 leading-relaxed font-medium">{project.impact}</p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-slate-100 mb-6">Key Responsibilities</h2>
-          <ul className="space-y-4">
-            {project.responsibilities.map((resp, i) => (
-              <li key={i} className="flex gap-4 items-start text-slate-400">
-                <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0" />
-                <span className="leading-relaxed">{resp}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-slate-100 mb-6">Technologies</h2>
-          <div className="flex flex-wrap gap-3">
-            {project.tech.map((tech) => (
-              <span key={tech} className="px-4 py-2 bg-white/5 rounded-xl text-teal-200 border border-white/10 shadow-[0_0_10px_rgba(45,212,191,0.05)] text-sm font-semibold tracking-wide">
-                {tech}
-              </span>
-            ))}
-          </div>
-        </section>
-
-      </div>
-    </div>
-  );
-}
+type Params = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return projects.map((p) => ({
-    slug: p.slug,
-  }));
+  return projects.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projectBySlug(slug);
+  if (!project) return {};
+  return {
+    title: `${project.title} | ${site.name}`,
+    description: project.summary,
+  };
+}
+
+export default async function ProjectPage({ params }: Params) {
+  const { slug } = await params;
+  const project = projectBySlug(slug);
+  if (!project) notFound();
+
+  const release = releaseForCompany(project.company);
+  const backHref = release ? `/#${anchorFor(release.version)}` : "/";
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <header className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between gap-4 px-5 sm:px-8">
+        <Link href="/" className="flex items-center gap-3 no-underline">
+          <Image
+            src="/images/profile.jpg"
+            alt=""
+            width={28}
+            height={28}
+            sizes="28px"
+            className="h-7 w-7 rounded-full object-cover object-top"
+          />
+          <span className="display text-base font-bold text-ink">{site.name}</span>
+        </Link>
+        <Actions compact />
+      </header>
+
+      <main className="flex-1">
+        <article>
+          <div className="mx-auto grid w-full max-w-[1200px] gap-x-8 gap-y-8 px-5 pb-14 pt-8 sm:px-8 md:grid-cols-12 md:pb-20 md:pt-14">
+            <div className="md:col-span-4 lg:col-span-3">
+              <div className="md:sticky md:top-8">
+                <Link href={backHref} className="mono text-xs font-medium text-green">
+                  <Arrow direction="left" /> All releases
+                </Link>
+                {release && (
+                  <p className="numeral mt-6 text-[clamp(2.5rem,5vw,3.75rem)] font-extrabold leading-none text-ink">
+                    {release.version}
+                  </p>
+                )}
+                <p className="mono mt-3 text-xs text-ink-3">{project.timeframe}</p>
+                <p className="mt-1 text-ink-2">
+                  {project.company} · {project.role}
+                </p>
+              </div>
+            </div>
+
+            <div className="md:col-span-8 lg:col-span-9">
+              <h1 className="display text-[2.25rem] font-bold leading-[1.02] text-ink sm:text-[3rem]">
+                {project.title}
+              </h1>
+              <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-ink-2">{project.summary}</p>
+
+              <dl className="mt-12 flex flex-col gap-10">
+                <div className="grid gap-x-6 gap-y-2 sm:grid-cols-[8rem_1fr]">
+                  <dt className="mono pt-1 text-[11px] font-semibold uppercase tracking-wider text-ink-3">Problem</dt>
+                  <dd className="max-w-[68ch] leading-relaxed text-ink">{project.problem}</dd>
+                </div>
+                <div className="grid gap-x-6 gap-y-2 sm:grid-cols-[8rem_1fr]">
+                  <dt className="mono pt-1 text-[11px] font-semibold uppercase tracking-wider text-green">Solution</dt>
+                  <dd className="max-w-[68ch] leading-relaxed text-ink">{project.solution}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <section className="on-green bg-green text-paper" aria-labelledby="impact-title">
+            <div className="mx-auto grid w-full max-w-[1200px] gap-x-8 gap-y-4 px-5 py-12 sm:px-8 md:grid-cols-12 md:py-16">
+              <h2 id="impact-title" className="mono text-[11px] font-semibold uppercase tracking-wider text-mint md:col-span-4 lg:col-span-3">
+                Impact
+              </h2>
+              <div className="md:col-span-8 lg:col-span-9">
+                <p className="display max-w-[30ch] text-[1.75rem] font-semibold leading-[1.2] text-white sm:text-[2.25rem]">
+                  {project.impact}
+                </p>
+                {project.metrics && (
+                  <div className="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+                    {project.metrics.map((m) => (
+                      <Metric key={m.label} value={m.value} label={m.label} onGreen />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+
+          <div className="mx-auto grid w-full max-w-[1200px] gap-x-8 gap-y-8 px-5 py-14 sm:px-8 md:grid-cols-12 md:py-20">
+            <div className="md:col-span-4 lg:col-span-3">
+              <h2 className="display text-2xl font-bold text-ink">What I did</h2>
+            </div>
+            <div className="md:col-span-8 lg:col-span-9">
+              <ul className="flex flex-col">
+                {project.responsibilities.map((r) => (
+                  <li key={r} className="lit -mx-4 max-w-[70ch] rounded-xl px-4 py-3 leading-relaxed text-ink">
+                    {r}
+                  </li>
+                ))}
+              </ul>
+              <p className="mono mt-10 text-xs leading-relaxed text-ink-3">
+                <span className="font-semibold uppercase">Stack</span> · {project.tech.join(" · ")}
+              </p>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <footer className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center justify-between gap-3 px-5 py-8 sm:px-8">
+        <p className="mono text-xs text-ink-3">© Rahul Tiwari · Boston, MA</p>
+        <Link href={backHref} className="mono text-xs text-ink-2">
+          <Arrow direction="left" /> Back to the changelog
+        </Link>
+      </footer>
+    </div>
+  );
 }

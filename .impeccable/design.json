@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T00:00:00Z",
+  "title": "Design System: Rahul Tiwari Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "green": { "role": "primary", "displayName": "Merged Green", "canonical": "#0a6b4b", "tonalRamp": ["#03231a", "#053a29", "#08553c", "#0a6b4b", "#2f8a68", "#6cb593", "#9fe0bd", "#dcefe4"] },
+      "green-deep": { "role": "primary", "displayName": "Deep Green", "canonical": "#08553c", "tonalRamp": ["#03231a", "#053a29", "#08553c", "#0a6b4b", "#2f8a68", "#6cb593", "#9fe0bd", "#dcefe4"] },
+      "mint": { "role": "primary", "displayName": "Mint", "canonical": "#c9f0da", "tonalRamp": ["#03231a", "#053a29", "#08553c", "#0a6b4b", "#2f8a68", "#9fe0bd", "#c9f0da", "#e9f8ef"] },
+      "mint-2": { "role": "primary", "displayName": "Mint 2", "canonical": "#9fe0bd", "tonalRamp": ["#03231a", "#053a29", "#08553c", "#0a6b4b", "#2f8a68", "#9fe0bd", "#c9f0da", "#e9f8ef"] },
+      "green-tint": { "role": "primary", "displayName": "Green Tint", "canonical": "#dcefe4", "tonalRamp": ["#03231a", "#053a29", "#08553c", "#0a6b4b", "#2f8a68", "#9fe0bd", "#dcefe4", "#f0f8f3"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#f3f4ef", "tonalRamp": ["#1d1f1b", "#3a3d37", "#5c5f59", "#84877f", "#aeb1a9", "#d3d5cd", "#e7e9e2", "#f3f4ef"] },
+      "paper-2": { "role": "neutral", "displayName": "Paper 2", "canonical": "#e7e9e2", "tonalRamp": ["#1d1f1b", "#3a3d37", "#5c5f59", "#84877f", "#aeb1a9", "#d3d5cd", "#e7e9e2", "#f3f4ef"] },
+      "white": { "role": "neutral", "displayName": "Lit White", "canonical": "#ffffff", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#7a7a7a", "#9c9c9c", "#c2c2c2", "#e6e6e6", "#ffffff"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#101418", "tonalRamp": ["#101418", "#23292f", "#3f474f", "#5c646c", "#7b838b", "#9da4ab", "#c4c9ce", "#e8eaec"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2", "canonical": "#3f474f", "tonalRamp": ["#101418", "#23292f", "#3f474f", "#5c646c", "#7b838b", "#9da4ab", "#c4c9ce", "#e8eaec"] },
+      "ink-3": { "role": "neutral", "displayName": "Ink 3", "canonical": "#5c646c", "tonalRamp": ["#101418", "#23292f", "#3f474f", "#5c646c", "#7b838b", "#9da4ab", "#c4c9ce", "#e8eaec"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the masthead only." },
+      "version-numeral": { "displayName": "Version Numeral", "purpose": "Release tag in the date rail; tabular lining numerals." },
+      "headline": { "displayName": "Headline", "purpose": "Role titles, section headings, case-study titles." },
+      "metric": { "displayName": "Metric", "purpose": "Every numeric outcome; the one numeric treatment." },
+      "title": { "displayName": "Title", "purpose": "Skill group names, degrees, the Impact statement." },
+      "lede": { "displayName": "Lede", "purpose": "Masthead intro and release summaries, 58 to 62ch." },
+      "body": { "displayName": "Body", "purpose": "Entry text and lists, max 68ch." },
+      "label": { "displayName": "Label", "purpose": "Kind labels, form labels, Problem/Solution/Impact/Stack; mono uppercase." },
+      "meta": { "displayName": "Meta", "purpose": "Dates, stack lines, footer, compact nav; mono." }
+    },
+    "shadows": [
+      { "name": "lit", "value": "0 1px 0 rgba(16,20,24,0.04), 0 12px 32px -20px rgba(16,20,24,0.35)", "purpose": "Hover and focus-within of a .lit row or pill on paper. Never at rest." },
+      { "name": "field-ring", "value": "inset 0 0 0 1px rgba(16,20,24,0.08)", "purpose": "The only border: field edge at rest; 0.18 alpha on hover." },
+      { "name": "field-focus", "value": "inset 0 0 0 2px #0a6b4b, 0 0 0 4px #c9f0da", "purpose": "Focused field, two rings." },
+      { "name": "field-invalid", "value": "inset 0 0 0 2px #101418", "purpose": "aria-invalid field." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing; lit transitions at 220ms, field transitions at 180ms." },
+      { "name": "rail-strike", "value": "opacity 120ms steps(2, end)", "purpose": "Date rail tag snapping from 0.32 to 1 as the release enters the middle of the viewport." },
+      { "name": "metric-count-in", "value": "spring(mass 1.4, damping 30, stiffness 90)", "purpose": "Overdamped count from zero to the true value, once, when in view. Disabled under reduced motion." },
+      { "name": "compact-bar-spring", "value": "spring(stiffness 420, damping 38, mass 0.8) from y -64px", "purpose": "Compact bar entering after 360px of scroll." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "container", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Download resume pill on paper.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download resume</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 24px; border-radius: 9999px; background: var(--color-green, #0a6b4b); color: var(--color-paper, #f3f4ef); font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background-color 220ms cubic-bezier(0.16,1,0.3,1), color 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: var(--color-green-deep, #08553c); color: #fff; box-shadow: 0 1px 0 rgba(16,20,24,0.04), 0 12px 32px -20px rgba(16,20,24,0.35); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-green, #0a6b4b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Get in touch pill on paper; lifts to white.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Get in touch</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 24px; border-radius: 9999px; background: var(--color-paper-2, #e7e9e2); color: var(--color-ink, #101418); font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background-color 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-secondary:hover { background: #fff; box-shadow: 0 1px 0 rgba(16,20,24,0.04), 0 12px 32px -20px rgba(16,20,24,0.35); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-green, #0a6b4b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Primary Button on Green",
+      "kind": "button",
+      "refersTo": "button-primary-on-green",
+      "description": "Paper pill on the green flood; Send message and Download resume in green bands.",
+      "html": "<div class=\"ds-green-band\"><button class=\"ds-btn-on-green\">Send message</button></div>",
+      "css": ".ds-green-band { background: var(--color-green, #0a6b4b); padding: 24px; } .ds-btn-on-green { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 28px; border: 0; border-radius: 9999px; background: var(--color-paper, #f3f4ef); color: var(--color-green-deep, #08553c); font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background-color 220ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-on-green:hover { background: #fff; } .ds-btn-on-green:focus-visible { outline: 2px solid var(--color-paper, #f3f4ef); outline-offset: 3px; } .ds-btn-on-green:disabled { opacity: 0.7; cursor: progress; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "White field with inset ring on the green contact band; mono mint label.",
+      "html": "<div class=\"ds-field-wrap\"><label class=\"ds-field-label\" for=\"ds-email\">Email</label><input class=\"ds-field\" id=\"ds-email\" type=\"email\" placeholder=\"you@company.com\"></div>",
+      "css": ".ds-field-wrap { display: flex; flex-direction: column; gap: 8px; background: var(--color-green, #0a6b4b); padding: 24px; } .ds-field-label { font-family: 'Geist Mono', ui-monospace, Menlo, monospace; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-mint, #c9f0da); } .ds-field { width: 100%; background: #fff; color: var(--color-ink, #101418); border: 0; border-radius: 8px; padding: 0.85rem 1rem; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 1rem; box-shadow: inset 0 0 0 1px rgba(16,20,24,0.08); transition: box-shadow 180ms cubic-bezier(0.16,1,0.3,1); } .ds-field::placeholder { color: var(--color-ink-3, #5c646c); } .ds-field:hover { box-shadow: inset 0 0 0 1px rgba(16,20,24,0.18); } .ds-field:focus { outline: none; box-shadow: inset 0 0 0 2px var(--color-green, #0a6b4b), 0 0 0 4px var(--color-mint, #c9f0da); } .ds-field[aria-invalid='true'] { box-shadow: inset 0 0 0 2px var(--color-ink, #101418); }"
+    },
+    {
+      "name": "Compact Bar",
+      "kind": "nav",
+      "refersTo": "compact-bar",
+      "description": "Opaque paper bar after 360px of scroll: avatar, name, mono section links, compact action pair.",
+      "html": "<div class=\"ds-bar\"><a class=\"ds-bar-home\" href=\"#\"><span class=\"ds-bar-avatar\"></span><span class=\"ds-bar-name\">Rahul Tiwari</span></a><nav class=\"ds-bar-nav\"><a href=\"#\">Releases</a><a href=\"#\">Dependencies</a><a href=\"#\">Education</a><a href=\"#\">Contact</a></nav><div class=\"ds-bar-actions\"><a class=\"ds-bar-primary\" href=\"#\">Download resume</a><a class=\"ds-bar-secondary\" href=\"#\">Get in touch</a></div></div>",
+      "css": ".ds-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding: 0 32px; background: var(--color-paper, #f3f4ef); } .ds-bar-home { display: flex; align-items: center; gap: 12px; text-decoration: none; } .ds-bar-avatar { width: 28px; height: 28px; border-radius: 9999px; background: var(--color-green, #0a6b4b); } .ds-bar-name { font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; color: var(--color-ink, #101418); } .ds-bar-nav { display: flex; gap: 24px; } .ds-bar-nav a { font-family: 'Geist Mono', ui-monospace, Menlo, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; color: var(--color-ink-2, #3f474f); text-decoration: none; } .ds-bar-nav a:hover { color: var(--color-green, #0a6b4b); } .ds-bar-actions { display: flex; gap: 12px; } .ds-bar-primary, .ds-bar-secondary { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 9999px; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background-color 220ms cubic-bezier(0.16,1,0.3,1); } .ds-bar-primary { background: var(--color-green, #0a6b4b); color: var(--color-paper, #f3f4ef); } .ds-bar-primary:hover { background: var(--color-green-deep, #08553c); color: #fff; } .ds-bar-secondary { background: var(--color-paper-2, #e7e9e2); color: var(--color-ink, #101418); } .ds-bar-secondary:hover { background: #fff; }"
+    },
+    {
+      "name": "Kind Label",
+      "kind": "chip",
+      "refersTo": "kind-label-added",
+      "description": "Changelog kind tag: Added in green, Improved and Fixed in ink-2 on paper.",
+      "html": "<div class=\"ds-kinds\"><span class=\"ds-kind ds-kind-added\">Added</span><span class=\"ds-kind\">Improved</span><span class=\"ds-kind\">Fixed</span></div>",
+      "css": ".ds-kinds { display: flex; gap: 24px; padding: 8px 0; } .ds-kind { font-family: 'Geist Mono', ui-monospace, Menlo, monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-ink-2, #3f474f); font-variant-numeric: tabular-nums; } .ds-kind-added { color: var(--color-green, #0a6b4b); }"
+    },
+    {
+      "name": "Lit Entry Row",
+      "kind": "custom",
+      "refersTo": "lit-row",
+      "description": "The unit of every list: kind label column, entry text, metrics beneath; lifts to white on hover.",
+      "html": "<li class=\"ds-row\"><span class=\"ds-row-kind\">Added</span><div><p class=\"ds-row-text\">Autoship workflow in Java 21 and Spring Boot that supports a clinic change per order item instead of cancelling the order. <a href=\"#\">Read the write-up <svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 8h11M9 3.5 13.5 8 9 12.5\"/></svg></a></p><div class=\"ds-metrics\"><span class=\"ds-metric\"><span class=\"ds-metric-num\">23%</span><span class=\"ds-metric-label\">fewer cancellations</span></span><span class=\"ds-metric\"><span class=\"ds-metric-num\">$3.6M</span><span class=\"ds-metric-label\">revenue growth</span></span></div></div></li>",
+      "css": ".ds-row { list-style: none; display: grid; grid-template-columns: 5.5rem 1fr; column-gap: 24px; row-gap: 8px; margin: 0 -16px; padding: 20px 16px; border-radius: 12px; background: var(--color-paper, #f3f4ef); transition: background-color 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms cubic-bezier(0.16,1,0.3,1); } .ds-row:hover, .ds-row:focus-within { background: #fff; box-shadow: 0 1px 0 rgba(16,20,24,0.04), 0 12px 32px -20px rgba(16,20,24,0.35); } .ds-row-kind { padding-top: 4px; font-family: 'Geist Mono', ui-monospace, Menlo, monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-green, #0a6b4b); } .ds-row-text { margin: 0; max-width: 68ch; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 1rem; line-height: 1.625; color: var(--color-ink, #101418); } .ds-row-text a { color: var(--color-green, #0a6b4b); font-weight: 600; white-space: nowrap; text-underline-offset: 0.18em; text-decoration-thickness: 1px; } .ds-row-text svg { display: inline-block; width: 0.85em; height: 0.85em; vertical-align: -0.08em; } .ds-metrics { display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 20px; } .ds-metric { display: flex; flex-direction: column; } .ds-metric-num { font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif; font-size: 2rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums lining-nums; color: var(--color-ink, #101418); } .ds-metric-label { margin-top: 6px; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.875rem; line-height: 1.375; color: var(--color-ink-3, #5c646c); }"
+    },
+    {
+      "name": "Date Rail",
+      "kind": "custom",
+      "refersTo": "version-numeral",
+      "description": "Sticky version numeral with mono date range; rests at 32% opacity until its release is in view.",
+      "html": "<div class=\"ds-rail\"><div class=\"ds-rail-tag\" data-lit=\"true\"><p class=\"ds-rail-num\">2026.06</p><p class=\"ds-rail-date\">Jun 2026 → now</p></div><div class=\"ds-rail-tag\"><p class=\"ds-rail-num\">2026.04</p><p class=\"ds-rail-date\">Apr 2026 → now</p></div></div>",
+      "css": ".ds-rail { display: flex; flex-direction: column; gap: 40px; padding: 16px 0; } .ds-rail-tag { opacity: 0.32; transition: opacity 120ms steps(2, end); } .ds-rail-tag[data-lit='true'], .ds-rail-tag:hover { opacity: 1; } .ds-rail-num { margin: 0; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(2.75rem, 5.5vw, 4.25rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums lining-nums; color: var(--color-ink, #101418); } .ds-rail-date { margin: 12px 0 0; font-family: 'Geist Mono', ui-monospace, Menlo, monospace; font-size: 0.75rem; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--color-ink-3, #5c646c); }"
+    },
+    {
+      "name": "Arrow",
+      "kind": "custom",
+      "refersTo": "arrow",
+      "description": "The site's one glyph: a 1.75 stroke on a 16 box, drawn once and rotated for up-right, down, left.",
+      "html": "<p class=\"ds-arrows\"><a href=\"#\">Read the write-up <svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 8h11M9 3.5 13.5 8 9 12.5\"/></svg></a> <a href=\"#\">bostonhome.app <svg class=\"ds-up-right\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 8h11M9 3.5 13.5 8 9 12.5\"/></svg></a> <a href=\"#\">Resume (PDF) <svg class=\"ds-down\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 8h11M9 3.5 13.5 8 9 12.5\"/></svg></a></p>",
+      "css": ".ds-arrows { display: flex; gap: 24px; flex-wrap: wrap; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 600; } .ds-arrows a { color: var(--color-green, #0a6b4b); text-underline-offset: 0.18em; text-decoration-thickness: 1px; } .ds-arrows svg { display: inline-block; width: 0.85em; height: 0.85em; vertical-align: -0.08em; } .ds-up-right { transform: rotate(-45deg); } .ds-down { transform: rotate(90deg); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Changelog",
+    "overview": "A career is published the way software is: as dated releases, each carrying entries tagged by kind and closed with the number it moved. The page is a single sheet of paper-white ground with ink type; the only committed color is one merged green, and it is spent in exactly two places, flooding the current release near the top and the closing contact band at the bottom. Everything between is paper, with grouping done by a left-hand date rail and whitespace rather than by boxes.\n\nThe world is code-led and text-dense but never cramped. Version tags and metrics are set in Bricolage Grotesque with tabular lining numerals so columns of figures align; Hanken Grotesk carries the prose; Geist Mono carries every date, label, and stack line. There are no cards, no dividers, no glass, no gradient text and no icon set: one 16-unit SVG arrow, rotated, is the whole glyph vocabulary. Motion is scarce and physical: an overdamped spring counts each metric in once, and the compact bar springs into place from above.",
+    "keyCharacteristics": [
+      "Paper ground, ink text, one green spent twice (latest release and contact band).",
+      "Left date rail with a sticky version numeral; the release in view strikes bright, the others sit back at 32% opacity.",
+      "Three typefaces with strict jobs: Bricolage for display and numerals, Hanken for body, Geist Mono for meta.",
+      "\"Lit from inside\" as the one hover language: a row or button lifts to white with a soft, low shadow.",
+      "Flat, boxless, borderless; the only strokes are inset field rings and the single arrow."
+    ],
+    "rules": [
+      { "name": "The Two Floods Rule", "body": "Green appears as a background exactly twice per page: the latest release and the contact band (and the Impact band on a case-study page). Every other section is paper. A new green surface must displace one of these, not join them.", "section": "colors" },
+      { "name": "The Mint-on-Green Rule", "body": "Inside a green flood, hierarchy is paper (primary) and mint (secondary); white is reserved for headlines, numerals, and links. No ink, no ink-2, no green text inside a green band.", "section": "colors" },
+      { "name": "The Two-Hue Label Rule", "body": "Kind labels use two tones on paper, green for \"Added\" and ink-2 for \"Improved\" and \"Fixed\", and one tone (mint) on green. Blue and amber label hues were tried and retired; do not reintroduce a per-kind hue system.", "section": "colors" },
+      { "name": "The Numeral Rule", "body": "Every number a reader is meant to compare (version tags, metrics, education tags) is set in Bricolage with tabular-nums lining-nums and -0.03em tracking, at 700 or 800. Body-weight numbers inside prose stay in Hanken.", "section": "typography" },
+      { "name": "The Mono-Is-Meta Rule", "body": "Geist Mono is used only for data about the content: dates, kind labels, stack lines, form labels, nav links in the compact bar, footer. It never carries a sentence a recruiter is meant to read for meaning.", "section": "typography" },
+      { "name": "The Tight-Display Rule", "body": "Bricolage always runs with negative tracking (-0.02em display, -0.03em numerals) and text-wrap: balance on headings. Never set it at default tracking.", "section": "typography" },
+      { "name": "The Rail Rule", "body": "Grouping is done by the date rail and whitespace. Never add a horizontal rule, box, or card to separate releases or entries.", "section": "layout" },
+      { "name": "The Lit-Only Rule", "body": "Surfaces are flat at rest. The one shadow appears only as a response to hover or focus, and only on paper.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set every comparable number in Bricolage with tabular-nums lining-nums at -0.03em, via the Metric component or the .numeral utility.",
+      "Do put secondary text on green in mint and headline, numeral, and link text on green in white.",
+      "Do use the .lit row for any new list item and let its hover be the only hover.",
+      "Do keep the date rail sticky at 80px and the body in the 8/9-column right grid on any new section.",
+      "Do use components/Arrow.tsx for every directional glyph, rotated, sized in em.",
+      "Do keep the compact bar and any other overlay opaque paper.",
+      "Do respect prefers-reduced-motion: count-ins, bar springs, and lit transitions all fall back to rest states."
+    ],
+    "donts": [
+      "Don't add cards, dividers, horizontal rules, borders, glass, blur, or gradient text; grouping is rail and whitespace only.",
+      "Don't introduce a third color family or per-kind label hues; green (Added) and ink-2 (Improved, Fixed) on paper, mint on green.",
+      "Don't paint green as a background anywhere other than the latest release and the closing band (Impact band on case studies).",
+      "Don't add an icon set, icon font, or emoji; the arrow is the only glyph.",
+      "Don't set Bricolage at default tracking, or use Geist Mono for readable sentences.",
+      "Don't center the masthead or add a hero glow; the masthead is a left-aligned grid with the action pair pinned right.",
+      "Don't put a shadow on a surface at rest; the lit shadow is a hover and focus response on paper only."
+    ]
+  }
+}
