@@ -6,6 +6,7 @@ import { skillGroups } from "@/lib/skills";
 import { education } from "@/lib/education";
 import { site } from "@/lib/site";
 import Arrow from "@/components/Arrow";
+import ResumeLink from "@/components/ResumeLink";
 
 export default function Home() {
   return (
@@ -103,9 +104,9 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href={site.resumePath} download="Rahul-Tiwari-Resume.pdf" className="font-semibold text-white">
+                  <ResumeLink className="font-semibold text-white">
                     Resume (PDF) <Arrow direction="down" />
-                  </a>
+                  </ResumeLink>
                 </li>
               </ul>
             </div>

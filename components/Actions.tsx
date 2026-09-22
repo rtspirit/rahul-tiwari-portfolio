@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
-import { site } from "@/lib/site";
+import ResumeLink from "@/components/ResumeLink";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -28,14 +28,7 @@ export default function Actions({ compact = false, onGreen = false, className }:
 
   return (
     <div className={cn("flex items-center gap-2 sm:gap-3", className)}>
-      <a
-        href={site.resumePath}
-        download="Rahul-Tiwari-Resume.pdf"
-        onClick={() => sendGAEvent("event", "resume_download")}
-        className={cn(base, primary)}
-      >
-        Download resume
-      </a>
+      <ResumeLink className={cn(base, primary)}>Download resume</ResumeLink>
       <Link
         href="/#contact"
         onClick={() => sendGAEvent("event", "contact_click")}
