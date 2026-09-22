@@ -21,7 +21,7 @@ All copy lives in `lib/` so a resume update is a data edit:
 | --- | --- |
 | `lib/releases.ts` | Roles as releases. Each entry has a kind (`added`, `improved`, `fixed`), text, optional metrics and an optional case-study link. The first release renders as the latest, flooded green. |
 | `lib/projects.ts` | Case studies served at `/projects/[slug]`. Keep slugs stable; they are linked from the releases and indexed. |
-| `lib/skills.ts` | The Dependencies section. |
+| `lib/skills.ts` | The Skillset section. |
 | `lib/education.ts` | The Education section, tagged by completion month. |
 | `lib/site.ts` | Name, title, intro line, resume path and external links. |
 

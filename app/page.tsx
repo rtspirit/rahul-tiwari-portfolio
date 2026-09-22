@@ -17,16 +17,16 @@ export default function Home() {
           <ReleaseSection key={release.version} release={release} latest={i === 0} />
         ))}
 
-        {/* Dependencies */}
-        <section id="dependencies" aria-labelledby="dependencies-title" className="scroll-mt-16 bg-paper-2/60">
+        {/* Skillset */}
+        <section id="skillset" aria-labelledby="skillset-title" className="scroll-mt-16 bg-paper-2/60">
           <div className="mx-auto grid w-full max-w-[1200px] gap-x-8 gap-y-8 px-5 py-14 sm:px-8 md:grid-cols-12 md:py-20">
             <div className="md:col-span-4 lg:col-span-3">
               <div className="md:sticky md:top-20">
-                <h2 id="dependencies-title" className="display text-[2rem] font-bold leading-none lg:text-[2.5rem]">
-                  Dependencies
+                <h2 id="skillset-title" className="display text-[2rem] font-bold leading-none lg:text-[2.5rem]">
+                  Skillset
                 </h2>
                 <p className="mt-3 max-w-[26ch] text-ink-2">
-                  What the releases above were built with, grouped the way I reach for them.
+                  What I work in day to day, grouped the way I reach for it.
                 </p>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function Home() {
                 <h2 id="education-title" className="display text-[2rem] font-bold leading-none lg:text-[2.5rem]">
                   Education
                 </h2>
-                <p className="mt-3 max-w-[26ch] text-ink-2">Tagged by the month each one ships.</p>
+                <p className="mt-3 max-w-[26ch] text-ink-2">Tagged by the month each one was completed.</p>
               </div>
             </div>
             <ol className="flex flex-col md:col-span-8 lg:col-span-9">

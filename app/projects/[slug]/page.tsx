@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="md:col-span-4 lg:col-span-3">
               <div className="md:sticky md:top-8">
                 <Link href={backHref} className="mono text-xs font-medium text-green">
-                  <Arrow direction="left" /> All releases
+                  <Arrow direction="left" /> Back to experience
                 </Link>
                 {release && (
                   <p className="numeral mt-6 text-[clamp(2.5rem,5vw,3.75rem)] font-extrabold leading-none text-ink">
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: Params) {
                 ))}
               </ul>
               <p className="mono mt-10 text-xs leading-relaxed text-ink-3">
-                <span className="font-semibold uppercase">Stack</span> · {project.tech.join(" · ")}
+                <span className="font-semibold uppercase">Built with</span> · {project.tech.join(" · ")}
               </p>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default async function ProjectPage({ params }: Params) {
       <footer className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center justify-between gap-3 px-5 py-8 sm:px-8">
         <p className="mono text-xs text-ink-3">© Rahul Tiwari · Boston, MA</p>
         <Link href={backHref} className="mono text-xs text-ink-2">
-          <Arrow direction="left" /> Back to the changelog
+          <Arrow direction="left" /> Back to experience
         </Link>
       </footer>
     </div>

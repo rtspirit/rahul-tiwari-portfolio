@@ -3,7 +3,7 @@ export const site = {
   title: "Senior Software Engineer",
   location: "Boston, MA",
   intro:
-    "Full-stack engineer with eight years in production systems. Recent releases include a prescription workflow that saves Chewy $5M a year, an autoship fix worth $3.6M in revenue, and BostonHome, a rent-transparency product 1.1K Boston renters have used.",
+    "Full-stack engineer with eight years in production systems. Recent work includes a prescription workflow that saves Chewy $5M a year, an autoship fix worth $3.6M in revenue, and BostonHome, a rent-transparency product 1.1K Boston renters have used.",
   resumePath: "/resume/Rahul-Tiwari-Resume.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/rtiwari27/",

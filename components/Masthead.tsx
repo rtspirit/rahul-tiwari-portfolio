@@ -8,8 +8,8 @@ import Actions from "@/components/Actions";
 import { site } from "@/lib/site";
 
 const NAV = [
-  { href: "#2026-06", label: "Releases" },
-  { href: "#dependencies", label: "Dependencies" },
+  { href: "#2026-06", label: "Experience" },
+  { href: "#skillset", label: "Skillset" },
   { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
 ];

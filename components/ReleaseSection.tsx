@@ -63,7 +63,7 @@ export default function ReleaseSection({ release, latest = false }: Props) {
             <p className={cn("mono mt-3 text-xs", onGreen ? "text-mint" : "text-ink-3")}>
               {release.start} → {release.end ?? "now"}
             </p>
-            {latest && <p className="mono mt-1 text-xs text-mint">Latest release</p>}
+            {latest && <p className="mono mt-1 text-xs text-mint">Current role</p>}
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export default function ReleaseSection({ release, latest = false }: Props) {
           </div>
 
           <p className={cn("mono mt-10 text-xs leading-relaxed", onGreen ? "text-mint" : "text-ink-3")}>
-            <span className="font-semibold uppercase">Stack</span> · {release.stack.join(" · ")}
+            <span className="font-semibold uppercase">Built with</span> · {release.stack.join(" · ")}
           </p>
         </div>
       </div>
