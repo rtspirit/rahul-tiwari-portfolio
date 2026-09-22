@@ -7,6 +7,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import Metric from "@/components/Metric";
 import Arrow from "@/components/Arrow";
 import { anchorFor, type Entry, type EntryKind, type Release } from "@/lib/releases";
+import { projectBySlug } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 const KIND_LABEL: Record<EntryKind, string> = {
@@ -145,7 +146,11 @@ function EntryRow({ entry, onGreen }: { entry: Entry; onGreen: boolean }) {
               {" "}
               <Link
                 href={entry.href}
-                onClick={() => sendGAEvent("event", "project_click", { project: entry.href })}
+                onClick={() =>
+                  sendGAEvent("event", "project_click", {
+                    project: projectBySlug(entry.href!.split("/").pop() ?? "")?.title ?? entry.href,
+                  })
+                }
                 className={cn("whitespace-nowrap font-semibold", onGreen ? "text-white" : "text-green")}
               >
                 Read the write-up <Arrow />
